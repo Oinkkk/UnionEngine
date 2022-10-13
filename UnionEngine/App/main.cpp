@@ -1,12 +1,9 @@
 #include "../Infra/Logger.h"
+#include "../Vulkan/VulkanLoader.h"
 
 int main()
 {
-	Infra::Logger &logger{ Infra::Logger::getInstance() };
-	logger.log(Infra::LogSeverityType::VERBOSE, "VERBOSE");
-	logger.log(Infra::LogSeverityType::INFO, "INFO");
-	logger.log(Infra::LogSeverityType::WARNING, "WARNING");
-	logger.log(Infra::LogSeverityType::FATAL, "FATAL");
+	VK::VulkanLoader &vulkanLoader{ VK::VulkanLoader::getInstance() };
 
 	return 0;
 }
