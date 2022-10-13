@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Logger</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Logger">
+      <UniqueIdentifier>{a80298b0-312d-4b6a-ab8b-8839e3cf7f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unique">
+      <UniqueIdentifier>{c8592d5c-44fb-4598-b3f3-360b0423139b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Logger.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="LogSeverityType.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Unique.h">
+      <Filter>Unique</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
