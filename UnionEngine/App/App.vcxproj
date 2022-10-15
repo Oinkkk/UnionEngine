@@ -94,6 +94,9 @@
     <ProjectReference Include="..\Infra\Infra.vcxproj">
       <Project>{cba94fe0-d26b-4f82-8297-f63670df19cb}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\RenderingEngine\RenderingEngine.vcxproj">
+      <Project>{d5d0fc36-65af-468b-8411-4c0aceb41a74}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Vulkan\Vulkan.vcxproj">
       <Project>{2273cd3a-dbd5-447a-9629-6d7bd5e05be7}</Project>
     </ProjectReference>
