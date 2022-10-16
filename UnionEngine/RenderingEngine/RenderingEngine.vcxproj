@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InstanceSupport.h" />
     <ClInclude Include="RenderingEngine.h" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +31,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InstanceSupport.cpp" />
     <ClCompile Include="RenderingEngine.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

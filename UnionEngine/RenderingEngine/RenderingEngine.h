@@ -1,7 +1,9 @@
 #pragma once
 
-#include "../Infra/Unique.h"
+#include "../Infra/Logger.h"
+#include "../Vulkan/Instance.h"
 #include <string_view>
+#include <vector>
 
 namespace Engine
 {
@@ -16,8 +18,48 @@ namespace Engine
 		const std::string __engineName;
 
 		uint32_t __instanceVersion{};
+		VkDebugUtilsMessengerCreateInfoEXT __debugMessengerCreateInfo{};
 
-		void __getInstanceVersion() noexcept;
-		void __checkInstanceVersionSupport() const;
+		std::unique_ptr<VK::Instance> __pInstance;
+
+		void __checkInstanceVersion();
+		void __populateDebugMessengerCreateInfo() noexcept;
+		void __createInstance();
+
+		[[nodiscard]]
+		static constexpr Infra::LogSeverityType __convertVulkanSeverityType(
+			const VkDebugUtilsMessageSeverityFlagBitsEXT severityType) noexcept;
+
+		static VkBool32 vkDebugUtilsMessengerCallbackEXT(
+			const VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
+			const VkDebugUtilsMessageTypeFlagsEXT messageTypes,
+			const VkDebugUtilsMessengerCallbackDataEXT *const pCallbackData,
+			void *const pUserData) noexcept;
 	};
+
+	constexpr Infra::LogSeverityType RenderingEngine::__convertVulkanSeverityType(
+		const VkDebugUtilsMessageSeverityFlagBitsEXT severityType) noexcept
+	{
+		Infra::LogSeverityType retVal{};
+		switch (severityType)
+		{
+		case VkDebugUtilsMessageSeverityFlagBitsEXT::VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:
+			retVal = Infra::LogSeverityType::VERBOSE;
+			break;
+
+		case VkDebugUtilsMessageSeverityFlagBitsEXT::VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT:
+			retVal = Infra::LogSeverityType::INFO;
+			break;
+
+		case VkDebugUtilsMessageSeverityFlagBitsEXT::VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
+			retVal = Infra::LogSeverityType::WARNING;
+			break;
+
+		case VkDebugUtilsMessageSeverityFlagBitsEXT::VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
+			retVal = Infra::LogSeverityType::FATAL;
+			break;
+		}
+
+		return retVal;
+	}
 }

@@ -1,8 +1,7 @@
 #pragma once
 
 #include "../Infra/Unique.h"
-#include "VulkanProcedure.h"
-#include <Windows.h>
+#include "VulkanProc.h"
 
 namespace VK
 {
@@ -13,11 +12,11 @@ namespace VK
 		static VulkanLoader &getInstance() noexcept;
 
 		[[nodiscard]]
-		constexpr const GlobalProcedure &getGlobalProcedure() const noexcept;
+		constexpr const GlobalProc &getGlobalProc() const noexcept;
 
 	private:
 		HMODULE __handle{};
-		GlobalProcedure __globalProc;
+		GlobalProc __globalProc;
 
 		VulkanLoader();
 		virtual ~VulkanLoader() noexcept;
@@ -25,7 +24,7 @@ namespace VK
 		void __loadGlobalProc() noexcept;
 	};
 
-	constexpr const GlobalProcedure &VulkanLoader::getGlobalProcedure() const noexcept
+	constexpr const GlobalProc &VulkanLoader::getGlobalProc() const noexcept
 	{
 		return __globalProc;
 	}

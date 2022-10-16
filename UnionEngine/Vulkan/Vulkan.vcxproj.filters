@@ -4,18 +4,33 @@
     <Filter Include="Loader">
       <UniqueIdentifier>{686cd37a-7246-497d-9ead-eea90c5730ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{e9b232b5-1bf7-494d-8dec-ccbec68ada2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Instance">
+      <UniqueIdentifier>{9c171672-4092-4f9b-8399-afc30c7faac3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VulkanProcedure.h">
-      <Filter>Loader</Filter>
-    </ClInclude>
     <ClInclude Include="VulkanLoader.h">
       <Filter>Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Vulkan.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="VulkanProc.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Instance.h">
+      <Filter>Instance</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VulkanLoader.cpp">
       <Filter>Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="Instance.cpp">
+      <Filter>Instance</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

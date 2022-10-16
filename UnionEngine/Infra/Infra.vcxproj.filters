@@ -12,6 +12,12 @@
     <Filter Include="Unique">
       <UniqueIdentifier>{c8592d5c-44fb-4598-b3f3-360b0423139b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Handle">
+      <UniqueIdentifier>{994095ea-ca5f-4c5f-9b8e-92c723e424e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Deletable">
+      <UniqueIdentifier>{a28918b3-8660-4a64-b423-2a220d0d21e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Logger.h">
@@ -22,6 +28,12 @@
     </ClInclude>
     <ClInclude Include="Unique.h">
       <Filter>Unique</Filter>
+    </ClInclude>
+    <ClInclude Include="Handle.h">
+      <Filter>Handle</Filter>
+    </ClInclude>
+    <ClInclude Include="Deletable.h">
+      <Filter>Deletable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

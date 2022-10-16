@@ -11,7 +11,7 @@ namespace VK
 
 	VulkanLoader::VulkanLoader()
 	{
-		__handle = LoadLibraryA("vulkan-1.dll");
+		__handle = LoadLibraryA("vulkan_loader.dll");
 		if (!__handle)
 			throw std::exception{ "Cannot find the vulkan loader." };
 

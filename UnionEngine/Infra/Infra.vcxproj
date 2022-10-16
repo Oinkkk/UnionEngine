@@ -22,6 +22,8 @@
     <ClCompile Include="Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Deletable.h" />
+    <ClInclude Include="Handle.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="LogSeverityType.h" />
     <ClInclude Include="Unique.h" />
