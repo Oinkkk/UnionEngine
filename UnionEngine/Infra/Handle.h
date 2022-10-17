@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Deletable.h"
+#include "Unique.h"
 
 namespace Infra
 {
 	template <typename $Type>
-	class Handle : public Deletable
+	class Handle : public virtual Unique
 	{
 	public:
 		Handle(const $Type handle) noexcept;

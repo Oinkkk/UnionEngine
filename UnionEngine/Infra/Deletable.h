@@ -4,7 +4,7 @@
 
 namespace Infra
 {
-	class Deletable : public Unique
+	class Deletable : public virtual Unique
 	{
 	public:
 		virtual ~Deletable() noexcept = default;

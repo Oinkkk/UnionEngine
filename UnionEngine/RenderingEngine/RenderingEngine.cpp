@@ -1,4 +1,4 @@
-#include "RenderingEngine.h"
+﻿#include "RenderingEngine.h"
 #include "../Vulkan/VulkanLoader.h"
 #include <format>
 #include <stdexcept>
@@ -103,13 +103,19 @@ namespace Engine
 
 		static constexpr VkValidationFeatureEnableEXT enabledValidationFeatures[]
 		{
+			// 퍼포먼스 떨어지는 코드 경고
 			VkValidationFeatureEnableEXT::VK_VALIDATION_FEATURE_ENABLE_BEST_PRACTICES_EXT,
+
+			// 셰이더에서 debugPrintfEXT() 호출할 수 있게 해줌
 			VkValidationFeatureEnableEXT::VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT,
+
+			// 메모리 해저드 발생 경고
 			VkValidationFeatureEnableEXT::VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT
 		};
 
 		static constexpr VkValidationFeatureDisableEXT disabledValidationFeatures[]
 		{
+			// 셰이더 검증에 대한 캐시 생성
 			VkValidationFeatureDisableEXT::VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT
 		};
 
