@@ -2,6 +2,7 @@
 
 #include "../Infra/Logger.h"
 #include "../Vulkan/DebugUtilsMessenger.h"
+#include "../Vulkan/PhysicalDevice.h"
 #include <string_view>
 #include <vector>
 
@@ -20,6 +21,7 @@ namespace Engine
 		uint32_t __instanceVersion{};
 
 		std::unique_ptr<VK::Instance> __pInstance;
+		std::unique_ptr<VK::PhysicalDevice> __pPhysicalDevice;
 
 #ifndef NDEBUG
 		VkDebugUtilsMessengerCreateInfoEXT __debugMessengerCreateInfo{};
@@ -31,6 +33,7 @@ namespace Engine
 
 		void __checkInstanceVersion();
 		void __createInstance();
+		void __pickPhysicalDevice();
 
 		[[nodiscard]]
 		static constexpr Infra::LogSeverityType __convertVulkanSeverityType(

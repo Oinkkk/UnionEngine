@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InstanceSupport.h" />
+    <ClInclude Include="PhysicalDevicePicker.h" />
     <ClInclude Include="RenderingEngine.h" />
   </ItemGroup>
   <ItemGroup>
@@ -32,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InstanceSupport.cpp" />
+    <ClCompile Include="PhysicalDevicePicker.cpp" />
     <ClCompile Include="RenderingEngine.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

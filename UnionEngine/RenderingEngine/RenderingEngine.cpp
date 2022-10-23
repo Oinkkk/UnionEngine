@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <vector>
 #include "InstanceSupport.h"
+#include "PhysicalDevicePicker.h"
 
 namespace Engine
 {
@@ -22,6 +23,8 @@ namespace Engine
 #ifndef NDEBUG
 		__createDebugUtilsMessenger();
 #endif
+
+		__pickPhysicalDevice();
 	}
 
 	RenderingEngine::~RenderingEngine() noexcept
@@ -171,6 +174,15 @@ namespace Engine
 		};
 
 		__pInstance = std::make_unique<VK::Instance>(createInfo);
+	}
+
+	void RenderingEngine::__pickPhysicalDevice()
+	{
+		const VkPhysicalDevice handle{ PhysicalDevicePicker::pick(*__pInstance) };
+		if (!handle)
+			throw std::runtime_error{ "No suitable physical device" };
+
+		__pPhysicalDevice = std::make_unique<VK::PhysicalDevice>(*__pInstance, handle);
 	}
 
 	VkBool32 RenderingEngine::vkDebugUtilsMessengerCallbackEXT(

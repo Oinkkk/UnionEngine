@@ -13,6 +13,9 @@
     <Filter Include="DebugUtilsMessenger">
       <UniqueIdentifier>{0a673ecb-e872-4cb6-8c22-0e068d5dbb40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PhysicalDevice">
+      <UniqueIdentifier>{7bff6141-553d-4a55-89dc-8b766aff0805}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VulkanLoader.h">
@@ -30,6 +33,9 @@
     <ClInclude Include="DebugUtilsMessenger.h">
       <Filter>DebugUtilsMessenger</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicalDevice.h">
+      <Filter>PhysicalDevice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VulkanLoader.cpp">
@@ -40,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="DebugUtilsMessenger.cpp">
       <Filter>DebugUtilsMessenger</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicalDevice.cpp">
+      <Filter>PhysicalDevice</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

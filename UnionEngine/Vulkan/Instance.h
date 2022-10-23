@@ -22,6 +22,19 @@ namespace VK
 			const VkDebugUtilsMessengerEXT messenger,
 			const VkAllocationCallbacks *const pAllocator) noexcept;
 
+		VkResult vkEnumeratePhysicalDevices(
+			uint32_t *const pPhysicalDeviceCount,
+			VkPhysicalDevice *const pPhysicalDevices) const noexcept;
+
+		void vkGetPhysicalDeviceProperties(
+			const VkPhysicalDevice physicalDevice,
+			VkPhysicalDeviceProperties *const pProperties) const noexcept;
+
+		void vkGetPhysicalDeviceQueueFamilyProperties(
+			const VkPhysicalDevice physicalDevice,
+			uint32_t *const pQueueFamilyPropertyCount,
+			VkQueueFamilyProperties *const pQueueFamilyProperties) const noexcept;
+
 	private:
 		InstanceProc __proc{};
 		

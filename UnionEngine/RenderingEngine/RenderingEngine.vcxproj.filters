@@ -7,6 +7,9 @@
     <Filter Include="Support">
       <UniqueIdentifier>{7ebd03b7-0df1-4545-8b1d-7a61f55ef892}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PhysicalDevicePicker">
+      <UniqueIdentifier>{03f6f706-1fdf-49a0-b115-91fbd4431b1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderingEngine.h">
@@ -15,6 +18,9 @@
     <ClInclude Include="InstanceSupport.h">
       <Filter>Support</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicalDevicePicker.h">
+      <Filter>PhysicalDevicePicker</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RenderingEngine.cpp">
@@ -22,6 +28,9 @@
     </ClCompile>
     <ClCompile Include="InstanceSupport.cpp">
       <Filter>Support</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicalDevicePicker.cpp">
+      <Filter>PhysicalDevicePicker</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

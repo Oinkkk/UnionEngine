@@ -20,6 +20,9 @@ namespace VK
 		PFN_vkDestroyInstance vkDestroyInstance{};
 		PFN_vkCreateDebugUtilsMessengerEXT vkCreateDebugUtilsMessengerEXT{};
 		PFN_vkDestroyDebugUtilsMessengerEXT vkDestroyDebugUtilsMessengerEXT{};
+		PFN_vkEnumeratePhysicalDevices vkEnumeratePhysicalDevices{};
+		PFN_vkGetPhysicalDeviceProperties vkGetPhysicalDeviceProperties{};
+		PFN_vkGetPhysicalDeviceQueueFamilyProperties vkGetPhysicalDeviceQueueFamilyProperties{};
 	};
 
 	class DeviceProc

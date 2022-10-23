@@ -29,6 +29,29 @@ namespace VK
 		__proc.vkDestroyDebugUtilsMessengerEXT(getHandle(), messenger, pAllocator);
 	}
 
+	VkResult Instance::vkEnumeratePhysicalDevices(
+		uint32_t *const pPhysicalDeviceCount,
+		VkPhysicalDevice *const pPhysicalDevices) const noexcept
+	{
+		return __proc.vkEnumeratePhysicalDevices(getHandle(), pPhysicalDeviceCount, pPhysicalDevices);
+	}
+
+	void Instance::vkGetPhysicalDeviceProperties(
+		const VkPhysicalDevice physicalDevice,
+		VkPhysicalDeviceProperties *const pProperties) const noexcept
+	{
+		__proc.vkGetPhysicalDeviceProperties(physicalDevice, pProperties);
+	}
+
+	void Instance::vkGetPhysicalDeviceQueueFamilyProperties(
+		const VkPhysicalDevice physicalDevice,
+		uint32_t *const pQueueFamilyPropertyCount,
+		VkQueueFamilyProperties *const pQueueFamilyProperties) const noexcept
+	{
+		__proc.vkGetPhysicalDeviceQueueFamilyProperties(
+			physicalDevice, pQueueFamilyPropertyCount, pQueueFamilyProperties);
+	}
+
 	void Instance::__queryProc() noexcept
 	{
 		__proc.vkDestroyInstance =
@@ -39,6 +62,15 @@ namespace VK
 
 		__proc.vkDestroyDebugUtilsMessengerEXT =
 			vkGetInstanceProcAddr<PFN_vkDestroyDebugUtilsMessengerEXT>("vkDestroyDebugUtilsMessengerEXT");
+
+		__proc.vkEnumeratePhysicalDevices =
+			vkGetInstanceProcAddr<PFN_vkEnumeratePhysicalDevices>("vkEnumeratePhysicalDevices");
+
+		__proc.vkGetPhysicalDeviceProperties =
+			vkGetInstanceProcAddr<PFN_vkGetPhysicalDeviceProperties>("vkGetPhysicalDeviceProperties");
+
+		__proc.vkGetPhysicalDeviceQueueFamilyProperties =
+			vkGetInstanceProcAddr<PFN_vkGetPhysicalDeviceQueueFamilyProperties>("vkGetPhysicalDeviceQueueFamilyProperties");
 	}
 
 	VkInstance Instance::__create(const VkInstanceCreateInfo &createInfo)
