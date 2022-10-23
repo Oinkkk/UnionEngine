@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Infra/Logger.h"
-#include "../Vulkan/Instance.h"
+#include "../Vulkan/DebugUtilsMessenger.h"
 #include <string_view>
 #include <vector>
 
@@ -18,12 +18,18 @@ namespace Engine
 		const std::string __engineName;
 
 		uint32_t __instanceVersion{};
-		VkDebugUtilsMessengerCreateInfoEXT __debugMessengerCreateInfo{};
 
 		std::unique_ptr<VK::Instance> __pInstance;
 
-		void __checkInstanceVersion();
+#ifndef NDEBUG
+		VkDebugUtilsMessengerCreateInfoEXT __debugMessengerCreateInfo{};
+		std::unique_ptr<VK::DebugUtilsMessenger> __pDebugUtilsMessenger;
+
 		void __populateDebugMessengerCreateInfo() noexcept;
+		void __createDebugUtilsMessenger();
+#endif
+
+		void __checkInstanceVersion();
 		void __createInstance();
 
 		[[nodiscard]]

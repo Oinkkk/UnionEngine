@@ -10,6 +10,9 @@
     <Filter Include="Instance">
       <UniqueIdentifier>{9c171672-4092-4f9b-8399-afc30c7faac3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DebugUtilsMessenger">
+      <UniqueIdentifier>{0a673ecb-e872-4cb6-8c22-0e068d5dbb40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VulkanLoader.h">
@@ -24,6 +27,9 @@
     <ClInclude Include="Instance.h">
       <Filter>Instance</Filter>
     </ClInclude>
+    <ClInclude Include="DebugUtilsMessenger.h">
+      <Filter>DebugUtilsMessenger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VulkanLoader.cpp">
@@ -31,6 +37,9 @@
     </ClCompile>
     <ClCompile Include="Instance.cpp">
       <Filter>Instance</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugUtilsMessenger.cpp">
+      <Filter>DebugUtilsMessenger</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

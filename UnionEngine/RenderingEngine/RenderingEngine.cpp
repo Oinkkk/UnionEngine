@@ -18,10 +18,18 @@ namespace Engine
 #endif
 
 		__createInstance();
+
+#ifndef NDEBUG
+		__createDebugUtilsMessenger();
+#endif
 	}
 
 	RenderingEngine::~RenderingEngine() noexcept
 	{
+#ifndef NDEBUG
+		__pDebugUtilsMessenger = nullptr;
+#endif
+
 		__pInstance = nullptr;
 	}
 
@@ -176,5 +184,10 @@ namespace Engine
 
 		logger.log(severityType, pCallbackData->pMessage);
 		return VK_FALSE;
+	}
+
+	void RenderingEngine::__createDebugUtilsMessenger()
+	{
+		__pDebugUtilsMessenger = std::make_unique<VK::DebugUtilsMessenger>(*__pInstance, __debugMessengerCreateInfo);
 	}
 }
