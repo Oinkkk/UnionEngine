@@ -22,8 +22,9 @@ namespace VK
 		PFN_vkDestroyDebugUtilsMessengerEXT vkDestroyDebugUtilsMessengerEXT{};
 		PFN_vkEnumeratePhysicalDevices vkEnumeratePhysicalDevices{};
 		PFN_vkGetPhysicalDeviceProperties vkGetPhysicalDeviceProperties{};
-		PFN_vkGetPhysicalDeviceQueueFamilyProperties vkGetPhysicalDeviceQueueFamilyProperties{};
 		PFN_vkGetPhysicalDeviceProperties2 vkGetPhysicalDeviceProperties2{};
+		PFN_vkGetPhysicalDeviceQueueFamilyProperties vkGetPhysicalDeviceQueueFamilyProperties{};
+		PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR vkGetPhysicalDeviceWin32PresentationSupportKHR{};
 	};
 
 	class DeviceProc

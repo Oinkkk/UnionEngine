@@ -43,6 +43,13 @@ namespace VK
 		__proc.vkGetPhysicalDeviceProperties(physicalDevice, pProperties);
 	}
 
+	void VulkanInstance::vkGetPhysicalDeviceProperties2(
+		const VkPhysicalDevice physicalDevice,
+		VkPhysicalDeviceProperties2 *const pProperties) const noexcept
+	{
+		__proc.vkGetPhysicalDeviceProperties2(physicalDevice, pProperties);
+	}
+
 	void VulkanInstance::vkGetPhysicalDeviceQueueFamilyProperties(
 		const VkPhysicalDevice physicalDevice,
 		uint32_t *const pQueueFamilyPropertyCount,
@@ -52,11 +59,11 @@ namespace VK
 			physicalDevice, pQueueFamilyPropertyCount, pQueueFamilyProperties);
 	}
 
-	void VulkanInstance::vkGetPhysicalDeviceProperties2(
+	VkBool32 VulkanInstance::vkGetPhysicalDeviceWin32PresentationSupportKHR(
 		const VkPhysicalDevice physicalDevice,
-		VkPhysicalDeviceProperties2 *const pProperties) const noexcept
+		const uint32_t queueFamilyIndex) const noexcept
 	{
-		__proc.vkGetPhysicalDeviceProperties2(physicalDevice, pProperties);
+		return __proc.vkGetPhysicalDeviceWin32PresentationSupportKHR(physicalDevice, queueFamilyIndex);
 	}
 
 	void VulkanInstance::__queryProc() noexcept
@@ -76,11 +83,14 @@ namespace VK
 		__proc.vkGetPhysicalDeviceProperties =
 			vkGetInstanceProcAddr<PFN_vkGetPhysicalDeviceProperties>("vkGetPhysicalDeviceProperties");
 
+		__proc.vkGetPhysicalDeviceProperties2 =
+			vkGetInstanceProcAddr<PFN_vkGetPhysicalDeviceProperties2>("vkGetPhysicalDeviceProperties2");
+
 		__proc.vkGetPhysicalDeviceQueueFamilyProperties =
 			vkGetInstanceProcAddr<PFN_vkGetPhysicalDeviceQueueFamilyProperties>("vkGetPhysicalDeviceQueueFamilyProperties");
 
-		__proc.vkGetPhysicalDeviceProperties2 =
-			vkGetInstanceProcAddr<PFN_vkGetPhysicalDeviceProperties2>("vkGetPhysicalDeviceProperties2");
+		__proc.vkGetPhysicalDeviceWin32PresentationSupportKHR =
+			vkGetInstanceProcAddr<PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR>("vkGetPhysicalDeviceWin32PresentationSupportKHR");
 	}
 
 	VkInstance VulkanInstance::__create(const VkInstanceCreateInfo &createInfo)

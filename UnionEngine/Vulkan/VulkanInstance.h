@@ -30,14 +30,19 @@ namespace VK
 			const VkPhysicalDevice physicalDevice,
 			VkPhysicalDeviceProperties *const pProperties) const noexcept;
 
+		void vkGetPhysicalDeviceProperties2(
+			const VkPhysicalDevice physicalDevice,
+			VkPhysicalDeviceProperties2 *const pProperties) const noexcept;
+
 		void vkGetPhysicalDeviceQueueFamilyProperties(
 			const VkPhysicalDevice physicalDevice,
 			uint32_t *const pQueueFamilyPropertyCount,
 			VkQueueFamilyProperties *const pQueueFamilyProperties) const noexcept;
 
-		void vkGetPhysicalDeviceProperties2(
+		[[nodiscard]]
+		VkBool32 vkGetPhysicalDeviceWin32PresentationSupportKHR(
 			const VkPhysicalDevice physicalDevice,
-			VkPhysicalDeviceProperties2 *const pProperties) const noexcept;
+			const uint32_t queueFamilyIndex) const noexcept;
 
 	private:
 		InstanceProc __proc{};

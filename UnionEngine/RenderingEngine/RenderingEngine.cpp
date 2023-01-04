@@ -26,6 +26,7 @@ namespace Engine
 
 		__pickPhysicalDevice();
 		__queryPhysicalDeviceProps();
+		__pickGraphicsQueueFamily();
 	}
 
 	RenderingEngine::~RenderingEngine() noexcept
@@ -202,7 +203,41 @@ namespace Engine
 		__physicalDevice13Prop.sType = VkStructureType::VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES;
 		__physicalDevice13Prop.pNext = nullptr;
 
-		__pPhysicalDevice->vkGetPhysicalDeviceProperties2(&__physicalDeviceProp2);
+		__pPhysicalDevice->vkGetProperties2(&__physicalDeviceProp2);
+	}
+
+	void RenderingEngine::__pickGraphicsQueueFamily() noexcept
+	{
+		uint32_t numProps{};
+		__pPhysicalDevice->vkGetQueueFamilyProperties(&numProps, nullptr);
+
+		std::vector<VkQueueFamilyProperties> queueFamilyProps;
+		queueFamilyProps.resize(numProps);
+		__pPhysicalDevice->vkGetQueueFamilyProperties(&numProps, queueFamilyProps.data());
+
+		bool found{};
+		for (uint32_t propIter = 0U; propIter < numProps; propIter++)
+		{
+			const VkQueueFamilyProperties &queueFamilyProp{ queueFamilyProps[propIter] };
+
+			if (!(queueFamilyProp.queueFlags & VkQueueFlagBits::VK_QUEUE_GRAPHICS_BIT))
+				continue;
+
+			const VkBool32 win32SupportResult
+			{
+				__pPhysicalDevice->vkGetWin32PresentationSupportKHR(propIter)
+			};
+
+			if (!win32SupportResult)
+				continue;
+
+			__queueFamilyIndex = propIter;
+			found = true;
+			break;
+		}
+
+		if (!found)
+			throw std::runtime_error{ "Cannot find any suitable graphics queue" };
 	}
 
 	VkBool32 RenderingEngine::vkDebugUtilsMessengerCallbackEXT(

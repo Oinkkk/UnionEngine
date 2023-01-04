@@ -20,7 +20,6 @@ namespace Engine
 		const std::string __engineName;
 
 		RenderContext __renderContext;
-
 		uint32_t __instanceVersion{};
 
 		std::unique_ptr<VK::VulkanInstance> __pVulkanInstance;
@@ -29,6 +28,8 @@ namespace Engine
 		VkPhysicalDeviceVulkan11Properties __physicalDevice11Prop{};
 		VkPhysicalDeviceVulkan12Properties __physicalDevice12Prop{};
 		VkPhysicalDeviceVulkan13Properties __physicalDevice13Prop{};
+
+		uint32_t __queueFamilyIndex{};
 
 #ifndef NDEBUG
 		VkDebugUtilsMessengerCreateInfoEXT __debugMessengerCreateInfo{};
@@ -42,6 +43,7 @@ namespace Engine
 		void __createVulkanInstance();
 		void __pickPhysicalDevice();
 		void __queryPhysicalDeviceProps() noexcept;
+		void __pickGraphicsQueueFamily() noexcept;
 
 		[[nodiscard]]
 		static constexpr Infra::LogSeverityType __convertVulkanSeverityType(
