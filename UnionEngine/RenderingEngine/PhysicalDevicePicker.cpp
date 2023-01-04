@@ -4,7 +4,7 @@
 
 namespace Engine
 {
-	VkPhysicalDevice PhysicalDevicePicker::pick(VK::Instance &instance) noexcept
+	VkPhysicalDevice PhysicalDevicePicker::pick(const VK::VulkanInstance &instance) noexcept
 	{
 		const std::vector<VkPhysicalDevice> devices{ __retrieveDevices(instance) };
 		std::multimap<uint32_t, VkPhysicalDevice> scoreMap;
@@ -33,28 +33,29 @@ namespace Engine
 		return scoreMap.rbegin()->second;
 	}
 
-	std::vector<VkPhysicalDevice> PhysicalDevicePicker::__retrieveDevices(VK::Instance &instance) noexcept
+	std::vector<VkPhysicalDevice> PhysicalDevicePicker::__retrieveDevices(
+		const VK::VulkanInstance &vulkanInstance) noexcept
 	{
 		uint32_t numDevices{};
-		instance.vkEnumeratePhysicalDevices(&numDevices, nullptr);
+		vulkanInstance.vkEnumeratePhysicalDevices(&numDevices, nullptr);
 
 		std::vector<VkPhysicalDevice> retVal;
 		retVal.resize(numDevices);
-		instance.vkEnumeratePhysicalDevices(&numDevices, retVal.data());
+		vulkanInstance.vkEnumeratePhysicalDevices(&numDevices, retVal.data());
 
 		return retVal;
 	}
 
 	std::vector<VkQueueFamilyProperties>
 		PhysicalDevicePicker::__retrieveQueueFamilyProps(
-		VK::Instance &instance, const VkPhysicalDevice physicalDevice) noexcept
+			const VK::VulkanInstance &vulkanInstance, const VkPhysicalDevice physicalDevice) noexcept
 	{
 		uint32_t numProps{};
-		instance.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &numProps, nullptr);
+		vulkanInstance.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &numProps, nullptr);
 
 		std::vector<VkQueueFamilyProperties> retVal;
 		retVal.resize(numProps);
-		instance.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &numProps, retVal.data());
+		vulkanInstance.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &numProps, retVal.data());
 
 		return retVal;
 	}

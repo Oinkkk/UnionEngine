@@ -12,11 +12,11 @@ namespace Infra
 		virtual ~Handle() noexcept = default;
 
 		[[nodiscard]]
-		constexpr const $Type &getHandle() & noexcept;
+		constexpr const $Type &getHandle() noexcept;
 
 	protected:
 		[[nodiscard]]
-		constexpr const $Type &getHandle() const & noexcept;
+		constexpr const $Type &getHandle() const noexcept;
 
 	private:
 		const $Type __handle;
@@ -28,13 +28,13 @@ namespace Infra
 	{}
 
 	template <typename $Type>
-	constexpr const $Type &Handle<$Type>::getHandle() & noexcept
+	constexpr const $Type &Handle<$Type>::getHandle() noexcept
 	{
 		return __handle;
 	}
 
 	template <typename $Type>
-	constexpr const $Type &Handle<$Type>::getHandle() const & noexcept
+	constexpr const $Type &Handle<$Type>::getHandle() const noexcept
 	{
 		return __handle;
 	}

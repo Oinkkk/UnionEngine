@@ -1,16 +1,19 @@
 #pragma once
 
-#include "Instance.h"
+#include "VulkanInstance.h"
 
 namespace VK
 {
 	class PhysicalDevice : public Infra::Handle<VkPhysicalDevice>
 	{
 	public:
-		PhysicalDevice(Instance &instance, const VkPhysicalDevice handle) noexcept;
+		PhysicalDevice(VulkanInstance &vulkanInstance, const VkPhysicalDevice handle) noexcept;
 		virtual ~PhysicalDevice() noexcept = default;
 
+		void vkGetPhysicalDeviceProperties2(
+			VkPhysicalDeviceProperties2 *const pProperties) const noexcept;
+
 	private:
-		Instance &__instance;
+		VulkanInstance &__vulkanInstance;
 	};
 }

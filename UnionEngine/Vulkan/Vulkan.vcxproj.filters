@@ -27,7 +27,7 @@
     <ClInclude Include="VulkanProc.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="Instance.h">
+    <ClInclude Include="VulkanInstance.h">
       <Filter>Instance</Filter>
     </ClInclude>
     <ClInclude Include="DebugUtilsMessenger.h">
@@ -41,7 +41,7 @@
     <ClCompile Include="VulkanLoader.cpp">
       <Filter>Loader</Filter>
     </ClCompile>
-    <ClCompile Include="Instance.cpp">
+    <ClCompile Include="VulkanInstance.cpp">
       <Filter>Instance</Filter>
     </ClCompile>
     <ClCompile Include="DebugUtilsMessenger.cpp">

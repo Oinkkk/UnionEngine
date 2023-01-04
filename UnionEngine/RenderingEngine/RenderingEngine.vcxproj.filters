@@ -10,6 +10,9 @@
     <Filter Include="PhysicalDevicePicker">
       <UniqueIdentifier>{03f6f706-1fdf-49a0-b115-91fbd4431b1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RenderContext">
+      <UniqueIdentifier>{aff77381-d96f-4851-b130-a68f05bd3812}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderingEngine.h">
@@ -20,6 +23,9 @@
     </ClInclude>
     <ClInclude Include="PhysicalDevicePicker.h">
       <Filter>PhysicalDevicePicker</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderContext.h">
+      <Filter>RenderContext</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

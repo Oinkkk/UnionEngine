@@ -1,20 +1,20 @@
 #pragma once
 
-#include "Instance.h"
+#include "VulkanInstance.h"
 
 namespace VK
 {
 	class DebugUtilsMessenger : public Infra::Handle<VkDebugUtilsMessengerEXT>, public Infra::Deletable
 	{
 	public:
-		DebugUtilsMessenger(Instance &instance, const VkDebugUtilsMessengerCreateInfoEXT &createInfo);
+		DebugUtilsMessenger(VulkanInstance &vulkanInstance, const VkDebugUtilsMessengerCreateInfoEXT &createInfo);
 		virtual ~DebugUtilsMessenger() noexcept;
 
 	private:
-		Instance &__instance;
+		VulkanInstance &__vulkanInstance;
 
 		[[nodiscard]]
 		static VkDebugUtilsMessengerEXT __create(
-			Instance &instance, const VkDebugUtilsMessengerCreateInfoEXT &createInfo);
+			VulkanInstance &instance, const VkDebugUtilsMessengerCreateInfoEXT &createInfo);
 	};
 }

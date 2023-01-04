@@ -3,21 +3,21 @@
 namespace VK
 {
 	DebugUtilsMessenger::DebugUtilsMessenger(
-		Instance &instance, const VkDebugUtilsMessengerCreateInfoEXT &createInfo) :
-		Handle{ __create(instance, createInfo) }, __instance{ instance }
+		VulkanInstance &vulkanInstance, const VkDebugUtilsMessengerCreateInfoEXT &createInfo) :
+		Handle{ __create(vulkanInstance, createInfo) }, __vulkanInstance{ vulkanInstance }
 	{}
 
 
 	DebugUtilsMessenger::~DebugUtilsMessenger() noexcept
 	{
-		__instance.vkDestroyDebugUtilsMessengerEXT(getHandle(), nullptr);
+		__vulkanInstance.vkDestroyDebugUtilsMessengerEXT(getHandle(), nullptr);
 	}
 
 	VkDebugUtilsMessengerEXT DebugUtilsMessenger::__create(
-		Instance &instance, const VkDebugUtilsMessengerCreateInfoEXT &createInfo)
+		VulkanInstance &vulkanInstance, const VkDebugUtilsMessengerCreateInfoEXT &createInfo)
 	{
 		VkDebugUtilsMessengerEXT retVal{};
-		instance.vkCreateDebugUtilsMessengerEXT(&createInfo, nullptr, &retVal);
+		vulkanInstance.vkCreateDebugUtilsMessengerEXT(&createInfo, nullptr, &retVal);
 
 		if (!retVal)
 			throw std::exception{ "Cannot create a VkDebugUtilsMessengerEXT." };

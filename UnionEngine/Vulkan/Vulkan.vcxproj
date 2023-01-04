@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DebugUtilsMessenger.h" />
-    <ClInclude Include="Instance.h" />
+    <ClInclude Include="VulkanInstance.h" />
     <ClInclude Include="PhysicalDevice.h" />
     <ClInclude Include="Vulkan.h" />
     <ClInclude Include="VulkanLoader.h" />
@@ -28,7 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DebugUtilsMessenger.cpp" />
-    <ClCompile Include="Instance.cpp" />
+    <ClCompile Include="VulkanInstance.cpp" />
     <ClCompile Include="PhysicalDevice.cpp" />
     <ClCompile Include="VulkanLoader.cpp" />
   </ItemGroup>

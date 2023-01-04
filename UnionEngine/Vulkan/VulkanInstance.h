@@ -7,11 +7,11 @@
 
 namespace VK
 {
-	class Instance : public Infra::Handle<VkInstance>, public Infra::Deletable
+	class VulkanInstance : public Infra::Handle<VkInstance>, public Infra::Deletable
 	{
 	public:
-		Instance(const VkInstanceCreateInfo &createInfo);
-		virtual ~Instance() noexcept;
+		VulkanInstance(const VkInstanceCreateInfo &createInfo);
+		virtual ~VulkanInstance() noexcept;
 
 		VkResult vkCreateDebugUtilsMessengerEXT(
 			const VkDebugUtilsMessengerCreateInfoEXT *const pCreateInfo,
@@ -35,6 +35,10 @@ namespace VK
 			uint32_t *const pQueueFamilyPropertyCount,
 			VkQueueFamilyProperties *const pQueueFamilyProperties) const noexcept;
 
+		void vkGetPhysicalDeviceProperties2(
+			const VkPhysicalDevice physicalDevice,
+			VkPhysicalDeviceProperties2 *const pProperties) const noexcept;
+
 	private:
 		InstanceProc __proc{};
 		
@@ -48,7 +52,7 @@ namespace VK
 	};
 
 	template <typename $Func>
-	$Func Instance::vkGetInstanceProcAddr(const std::string_view name) const noexcept
+	$Func VulkanInstance::vkGetInstanceProcAddr(const std::string_view name) const noexcept
 	{
 		const GlobalProc &globalProc{ VulkanLoader::getInstance().getGlobalProc() };
 		return reinterpret_cast<$Func>(globalProc.vkGetInstanceProcAddr(getHandle(), name.data()));

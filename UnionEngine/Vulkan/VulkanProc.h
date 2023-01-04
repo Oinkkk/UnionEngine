@@ -23,6 +23,7 @@ namespace VK
 		PFN_vkEnumeratePhysicalDevices vkEnumeratePhysicalDevices{};
 		PFN_vkGetPhysicalDeviceProperties vkGetPhysicalDeviceProperties{};
 		PFN_vkGetPhysicalDeviceQueueFamilyProperties vkGetPhysicalDeviceQueueFamilyProperties{};
+		PFN_vkGetPhysicalDeviceProperties2 vkGetPhysicalDeviceProperties2{};
 	};
 
 	class DeviceProc

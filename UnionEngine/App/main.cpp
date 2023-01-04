@@ -3,11 +3,9 @@
 
 int main() try
 {
-	Infra::Logger &logger{ Infra::Logger::getInstance() };
-
-	VK::VulkanLoader &vulkanLoader{ VK::VulkanLoader::getInstance() };
 	Engine::RenderingEngine renderingEngine{ "UnionEngineSample", "UnionEngine" };
 
+	Infra::Logger &logger{ Infra::Logger::getInstance() };
 	logger.log(Infra::LogSeverityType::INFO, "The application is finished successfully");
 
 	return 0;

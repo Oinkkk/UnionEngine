@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="InstanceSupport.h" />
     <ClInclude Include="PhysicalDevicePicker.h" />
+    <ClInclude Include="RenderContext.h" />
     <ClInclude Include="RenderingEngine.h" />
   </ItemGroup>
   <ItemGroup>

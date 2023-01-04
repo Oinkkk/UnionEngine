@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Vulkan/Instance.h"
+#include "../Vulkan/VulkanInstance.h"
 #include <vector>
 
 namespace Engine
@@ -11,15 +11,15 @@ namespace Engine
 		PhysicalDevicePicker() = delete;
 
 		[[nodiscard]]
-		static VkPhysicalDevice pick(VK::Instance &instance) noexcept;
+		static VkPhysicalDevice pick(const VK::VulkanInstance &vulkanInstance) noexcept;
 
 	private:
 		[[nodiscard]]
-		static std::vector<VkPhysicalDevice> __retrieveDevices(VK::Instance &instance) noexcept;
+		static std::vector<VkPhysicalDevice> __retrieveDevices(const VK::VulkanInstance &vulkanInstance) noexcept;
 
 		static std::vector<VkQueueFamilyProperties>
 			__retrieveQueueFamilyProps(
-			VK::Instance &instance, const VkPhysicalDevice physicalDevice) noexcept;
+				const VK::VulkanInstance &vulkanInstance, const VkPhysicalDevice physicalDevice) noexcept;
 
 		[[nodiscard]]
 		static bool __checkVersionSupport(

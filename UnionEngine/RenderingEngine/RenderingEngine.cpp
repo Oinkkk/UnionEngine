@@ -18,13 +18,14 @@ namespace Engine
 		__populateDebugMessengerCreateInfo();
 #endif
 
-		__createInstance();
+		__createVulkanInstance();
 
 #ifndef NDEBUG
 		__createDebugUtilsMessenger();
 #endif
 
 		__pickPhysicalDevice();
+		__queryPhysicalDeviceProps();
 	}
 
 	RenderingEngine::~RenderingEngine() noexcept
@@ -33,7 +34,7 @@ namespace Engine
 		__pDebugUtilsMessenger = nullptr;
 #endif
 
-		__pInstance = nullptr;
+		__pVulkanInstance = nullptr;
 	}
 
 	void RenderingEngine::__checkInstanceVersion()
@@ -89,7 +90,7 @@ namespace Engine
 		__debugMessengerCreateInfo.pfnUserCallback = vkDebugUtilsMessengerCallbackEXT;
 	}
 
-	void RenderingEngine::__createInstance()
+	void RenderingEngine::__createVulkanInstance()
 	{
 		const VK::GlobalProc &globalProc{ VK::VulkanLoader::getInstance().getGlobalProc() };
 		InstanceSupport &instanceSupport{ InstanceSupport::getInstance() };
@@ -173,16 +174,35 @@ namespace Engine
 			.ppEnabledExtensionNames = enabledExtensions.data()
 		};
 
-		__pInstance = std::make_unique<VK::Instance>(createInfo);
+		__pVulkanInstance = std::make_unique<VK::VulkanInstance>(createInfo);
+		__renderContext.pVulkanInstance = __pVulkanInstance.get();
 	}
 
 	void RenderingEngine::__pickPhysicalDevice()
 	{
-		const VkPhysicalDevice handle{ PhysicalDevicePicker::pick(*__pInstance) };
+		const VkPhysicalDevice handle{ PhysicalDevicePicker::pick(*__pVulkanInstance) };
 		if (!handle)
 			throw std::runtime_error{ "No suitable physical device" };
 
-		__pPhysicalDevice = std::make_unique<VK::PhysicalDevice>(*__pInstance, handle);
+		__pPhysicalDevice = std::make_unique<VK::PhysicalDevice>(*__pVulkanInstance, handle);
+		__renderContext.pPhysicalDevice = __pPhysicalDevice.get();
+	}
+
+	void RenderingEngine::__queryPhysicalDeviceProps() noexcept
+	{
+		__physicalDeviceProp2.sType = VkStructureType::VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2;
+		__physicalDeviceProp2.pNext = &__physicalDevice11Prop;
+
+		__physicalDevice11Prop.sType = VkStructureType::VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES;
+		__physicalDevice11Prop.pNext = &__physicalDevice12Prop;
+
+		__physicalDevice12Prop.sType = VkStructureType::VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES;
+		__physicalDevice12Prop.pNext = &__physicalDevice13Prop;
+
+		__physicalDevice13Prop.sType = VkStructureType::VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES;
+		__physicalDevice13Prop.pNext = nullptr;
+
+		__pPhysicalDevice->vkGetPhysicalDeviceProperties2(&__physicalDeviceProp2);
 	}
 
 	VkBool32 RenderingEngine::vkDebugUtilsMessengerCallbackEXT(
@@ -200,6 +220,6 @@ namespace Engine
 
 	void RenderingEngine::__createDebugUtilsMessenger()
 	{
-		__pDebugUtilsMessenger = std::make_unique<VK::DebugUtilsMessenger>(*__pInstance, __debugMessengerCreateInfo);
+		__pDebugUtilsMessenger = std::make_unique<VK::DebugUtilsMessenger>(*__pVulkanInstance, __debugMessengerCreateInfo);
 	}
 }

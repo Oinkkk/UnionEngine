@@ -3,6 +3,7 @@
 #include "../Infra/Logger.h"
 #include "../Vulkan/DebugUtilsMessenger.h"
 #include "../Vulkan/PhysicalDevice.h"
+#include "RenderContext.h"
 #include <string_view>
 #include <vector>
 
@@ -18,10 +19,16 @@ namespace Engine
 		const std::string __appName;
 		const std::string __engineName;
 
+		RenderContext __renderContext;
+
 		uint32_t __instanceVersion{};
 
-		std::unique_ptr<VK::Instance> __pInstance;
+		std::unique_ptr<VK::VulkanInstance> __pVulkanInstance;
 		std::unique_ptr<VK::PhysicalDevice> __pPhysicalDevice;
+		VkPhysicalDeviceProperties2 __physicalDeviceProp2{};
+		VkPhysicalDeviceVulkan11Properties __physicalDevice11Prop{};
+		VkPhysicalDeviceVulkan12Properties __physicalDevice12Prop{};
+		VkPhysicalDeviceVulkan13Properties __physicalDevice13Prop{};
 
 #ifndef NDEBUG
 		VkDebugUtilsMessengerCreateInfoEXT __debugMessengerCreateInfo{};
@@ -32,8 +39,9 @@ namespace Engine
 #endif
 
 		void __checkInstanceVersion();
-		void __createInstance();
+		void __createVulkanInstance();
 		void __pickPhysicalDevice();
+		void __queryPhysicalDeviceProps() noexcept;
 
 		[[nodiscard]]
 		static constexpr Infra::LogSeverityType __convertVulkanSeverityType(
